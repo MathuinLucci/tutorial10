@@ -30,3 +30,17 @@
 	
 */
 
+/* Set the date displayed in the calendar */
+var thisDay = new Date("August 24, 2018");
+
+
+/* Write the calendar to the element with the id "calendar" */
+document.getElementById("calendar").innerHTML=
+createCalendar(thisDay);
+
+/* Function to generate the calendar table */
+function createCalendar(calDate) {
+   var calendarHTML = "<table id='calendar_table'>";
+   calendarHTML += "</table>";
+   return calendarHTML;
+}
