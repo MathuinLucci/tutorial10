@@ -81,3 +81,15 @@ function calWeekdayRow() {
       rowHTML += "</tr>";
       return rowHTML;
 }
+
+/* funtion to calculate the number of days in the month*/
+function daysInMonth(calDate) {
+   var dayCount = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+   //Extract the four-digit year and month value
+   var thisYear = calDate.getFullYear();
+   var thisMonth = calDate.getMonth();
+
+   //Return the number of days for the current month
+   return dayCount[thisMonth];
+}
