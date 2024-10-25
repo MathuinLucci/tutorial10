@@ -43,6 +43,7 @@ function createCalendar(calDate) {
    var calendarHTML = "<table id='calendar_table'>";
    calendarHTML += calCaption(calDate);
    calendarHTML += calWeekdayRow();
+   calendarHTML += calDays(calDate);
    calendarHTML += "</table>";
    return calendarHTML;
 }
@@ -90,6 +91,43 @@ function daysInMonth(calDate) {
    var thisYear = calDate.getFullYear();
    var thisMonth = calDate.getMonth();
 
+   /*Mathmatic operation to determine leap year by 
+   dividing by 4 and seeing if the remainder is 0*/
+   if (thisYear % 4 === 0) {
+      if ((thisYear % 100 != 0) || (thisYear % 400 === 0)) {
+         dayCount[1] = 29;
+      }
+   }
+
    //Return the number of days for the current month
    return dayCount[thisMonth];
+}
+
+/* Function to writee table rows for each day of the current month */
+function calDays(calDate) {
+
+   //Determine the startin day of the month
+   var day = new Date (calDate.getFullYear(), calDate.getMonth() , 1);
+   var weekDay = day.getDay();
+
+   //Write blank cells preceding the starting day
+   var htmlCode = "<tr>";
+   for (var i = 0; i < weekDay; i++) {
+      htmlCode += "<td></td>";
+   }
+
+   //Write cells for each day of the month
+   var totalDays = daysInMonth(calDate);
+   for (var i = 1; i <= totalDays; i++) {
+      day.setDate(i);
+      weekDay = day.getDay();
+
+      if (weekDay === 0) 
+         htmlCode += "<tr>";
+         htmlCode += "<td class='calendar_dates'>" + i + "</td>";
+      
+      if (weekDay === 6)
+         htmlCode += "</tr>";
+   }
+   return htmlCode;
 }
