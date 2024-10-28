@@ -118,14 +118,21 @@ function calDays(calDate) {
 
    //Write cells for each day of the month
    var totalDays = daysInMonth(calDate);
+
+   var highlightDay = calDate.getDate();
+   
    for (var i = 1; i <= totalDays; i++) {
       day.setDate(i);
       weekDay = day.getDay();
 
       if (weekDay === 0) 
          htmlCode += "<tr>";
-         htmlCode += "<td class='calendar_dates'>" + i + "</td>";
-      
+      if (i === highlightDay) {
+         htmlCode +="<td class='calendar_dates' id='calendar_today'>" + i + "</td>"
+      }
+      else {
+         htmlCode += "<td class='calendar_dates'>" + i + "</td>"
+      }
       if (weekDay === 6)
          htmlCode += "</tr>";
    }
